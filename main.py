@@ -40,12 +40,14 @@ def main() -> None:
     )
     engine.update_fov()
 
-    with tcod.context.new_terminal(
-        screen_width,
-        screen_height,
+    with tcod.context.new(
+        columns=screen_width,
+        rows=screen_height,
         tileset=tileset,
         title="Yet Another Routelike Tutorial",
         vsync=True,
+        sdl_window_flags=tcod.context.SDL_WINDOW_RESIZABLE
+        | tcod.context.SDL_WINDOW_MAXIMIZED,
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
 
