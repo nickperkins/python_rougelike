@@ -1,2 +1,22 @@
 [tool.black]
 line-length = 88
+
+[tool.poetry]
+name = "rougelike"
+version = "0.1.0"
+description = "A rougelike game written from a tutorial"
+authors = ["Nick Perkins <nick@nicholasperkins.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+tcod = "*"
+numpy = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+mypy = "*"
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
