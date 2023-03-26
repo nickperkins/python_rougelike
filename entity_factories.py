@@ -1,5 +1,6 @@
 from components.ai import HostileEnemy
-from components import consumable
+from components import consumable, equippable
+from components.equipment import Equipment
 from components.fighter import Fighter
 from components.inventory import Inventory
 from components.level import Level
@@ -10,7 +11,8 @@ player = Actor(
     colour=(255, 255, 255),
     name="Player",
     ai_cls=HostileEnemy,
-    fighter=Fighter(hp=30, defense=2, power=5),
+    equipment=Equipment(),
+    fighter=Fighter(hp=30, base_defense=1, base_power=2),
     inventory=Inventory(capacity=26),
     level=Level(level_up_base=200),
 )
@@ -20,16 +22,19 @@ orc = Actor(
     colour=(63, 127, 63),
     name="Orc",
     ai_cls=HostileEnemy,
-    fighter=Fighter(hp=10, defense=0, power=3),
+    equipment=Equipment(),
+    fighter=Fighter(hp=10, base_defense=0, base_power=3),
     inventory=Inventory(capacity=0),
     level=Level(xp_given=25),
 )
+
 troll = Actor(
     char="T",
     colour=(0, 127, 0),
     name="Troll",
     ai_cls=HostileEnemy,
-    fighter=Fighter(hp=16, defense=1, power=4),
+    equipment=Equipment(),
+    fighter=Fighter(hp=16, base_defense=1, base_power=4),
     inventory=Inventory(capacity=0),
     level=Level(xp_given=35),
 )
@@ -60,4 +65,23 @@ lightning_scroll = Item(
     colour=(255, 255, 0),
     name="Lightning Scroll",
     consumable=consumable.LightningDamageConsumable(damage=20, maximum_range=4),
+)
+
+dagger = Item(
+    char="/", colour=(0, 191, 255), name="Dagger", equippable=equippable.Dagger()
+)
+
+sword = Item(
+    char="/", colour=(0, 191, 255), name="Sword", equippable=equippable.Sword()
+)
+
+leather_armor = Item(
+    char="[]",
+    colour=(139, 69, 19),
+    name="Leather Armor",
+    equippable=equippable.LeatherArmor(),
+)
+
+chain_mail = Item(
+    char="[", colour=(139, 69, 19), name="Chain Mail", equippable=equippable.ChainMail()
 )
