@@ -272,14 +272,16 @@ class LevelUpEventHandler(AskUserEventHandler):
             x=x + 1,
             y=5,
             string=(
-                f"b) Strength (+1 attack, from " f"{self.engine.player.fighter.power})"
+                f"b) Strength (+1 attack, from {self.engine.player.fighter.power})"
             ),
         )
 
         console.print(
             x=x + 1,
             y=6,
-            string=f"c) Agility (+1 defence, from {self.engine.player.fighter.defense})",
+            string=(
+                f"c) Agility (+1 defence, from {self.engine.player.fighter.defense})"
+            ),
         )
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[ActionOrHandler]:
@@ -415,6 +417,7 @@ class SelectIndexHandler(AskUserEventHandler):
             return None
         elif key in CONFIRM_KEYS:
             return super().ev_keydown(event)
+        return super().ev_keydown(event)
 
     def ev_mousebuttondown(
         self, event: tcod.event.MouseButtonDown
@@ -424,6 +427,7 @@ class SelectIndexHandler(AskUserEventHandler):
             if event.button == 1:
                 return self.on_index_selected(*event.tile)
             return super().ev_mousebuttondown(event)
+        return super().ev_mousebuttondown(event)
 
     def on_index_selected(self, x: int, y: int) -> Optional[ActionOrHandler]:
         """Called when an index is selected."""
@@ -560,11 +564,11 @@ class GameOverEventHandler(EventHandler):
         raise exceptions.QuitWithoutSaving()  # Avoid saving a finished game.
 
     def ev_quit(self, event: tcod.event.Quit) -> None:
-        self.on_quit
+        self.on_quit()
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> None:
         if event.sym == tcod.event.K_ESCAPE:
-            self.on_quit
+            self.on_quit()
 
 
 CURSOR_Y_KEYS = {

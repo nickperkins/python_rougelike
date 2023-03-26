@@ -13,7 +13,7 @@ class Message:
         self.count = 1
 
     @property
-    def full_text(self):
+    def full_text(self) -> str:
         """The full text of this message, including the count if necessary."""
         if self.count > 1:
             return f"{self.plain_text} (x{self.count})"
